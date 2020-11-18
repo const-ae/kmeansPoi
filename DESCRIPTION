@@ -10,7 +10,8 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Depends:
-  matrixStats
+    matrixStats,
+    R (>= 2.10)
 Suggests: 
     testthat
 RoxygenNote: 7.1.0
