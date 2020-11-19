@@ -5,6 +5,60 @@
 
 using namespace Rcpp;
 
+// poisson_deviance
+NumericVector poisson_deviance(const NumericVector& y, const NumericVector& mu);
+RcppExport SEXP _kmeansPoi_poisson_deviance(SEXP ySEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(poisson_deviance(y, mu));
+    return rcpp_result_gen;
+END_RCPP
+}
+// run_kmeans
+List run_kmeans(const NumericMatrix& Y, const NumericVector& size_factors, const NumericMatrix& centers_start, double min_mu, int max_iter, double tolerance, bool verbose);
+RcppExport SEXP _kmeansPoi_run_kmeans(SEXP YSEXP, SEXP size_factorsSEXP, SEXP centers_startSEXP, SEXP min_muSEXP, SEXP max_iterSEXP, SEXP toleranceSEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type size_factors(size_factorsSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type centers_start(centers_startSEXP);
+    Rcpp::traits::input_parameter< double >::type min_mu(min_muSEXP);
+    Rcpp::traits::input_parameter< int >::type max_iter(max_iterSEXP);
+    Rcpp::traits::input_parameter< double >::type tolerance(toleranceSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(run_kmeans(Y, size_factors, centers_start, min_mu, max_iter, tolerance, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
+// kmeans_pp_initialization
+NumericMatrix kmeans_pp_initialization(const NumericMatrix& Y, const NumericVector& size_factors, const int k, const double min_mu);
+RcppExport SEXP _kmeansPoi_kmeans_pp_initialization(SEXP YSEXP, SEXP size_factorsSEXP, SEXP kSEXP, SEXP min_muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type size_factors(size_factorsSEXP);
+    Rcpp::traits::input_parameter< const int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< const double >::type min_mu(min_muSEXP);
+    rcpp_result_gen = Rcpp::wrap(kmeans_pp_initialization(Y, size_factors, k, min_mu));
+    return rcpp_result_gen;
+END_RCPP
+}
+// benchmark_log
+double benchmark_log(const NumericVector& y, const NumericVector& mu);
+RcppExport SEXP _kmeansPoi_benchmark_log(SEXP ySEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(benchmark_log(y, mu));
+    return rcpp_result_gen;
+END_RCPP
+}
 // fuse_ints_for_double
 double fuse_ints_for_double(int exp, int sig);
 RcppExport SEXP _kmeansPoi_fuse_ints_for_double(SEXP expSEXP, SEXP sigSEXP) {
@@ -59,17 +113,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// log_approx
-NumericVector log_approx(const NumericVector& x);
-RcppExport SEXP _kmeansPoi_log_approx(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(log_approx(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // log_approx2
 NumericVector log_approx2(const NumericVector& x);
 RcppExport SEXP _kmeansPoi_log_approx2(SEXP xSEXP) {
@@ -81,63 +124,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// benchmark_log
-double benchmark_log(const NumericVector& x);
-RcppExport SEXP _kmeansPoi_benchmark_log(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(benchmark_log(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// benchmark_log_approx
-double benchmark_log_approx(const NumericVector& x);
-RcppExport SEXP _kmeansPoi_benchmark_log_approx(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(benchmark_log_approx(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// benchmark_log_approx2
-double benchmark_log_approx2(const NumericVector& x);
-RcppExport SEXP _kmeansPoi_benchmark_log_approx2(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(benchmark_log_approx2(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// poisson_deviance
-NumericVector poisson_deviance(const NumericVector& y, const NumericVector& mu);
-RcppExport SEXP _kmeansPoi_poisson_deviance(SEXP ySEXP, SEXP muSEXP) {
+// poisson_deviance2
+NumericVector poisson_deviance2(const NumericVector& y, const NumericVector& mu);
+RcppExport SEXP _kmeansPoi_poisson_deviance2(SEXP ySEXP, SEXP muSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type mu(muSEXP);
-    rcpp_result_gen = Rcpp::wrap(poisson_deviance(y, mu));
+    rcpp_result_gen = Rcpp::wrap(poisson_deviance2(y, mu));
     return rcpp_result_gen;
 END_RCPP
 }
-// poisson_deviance_opt
-NumericVector poisson_deviance_opt(const NumericVector& y, const NumericVector& mu);
-RcppExport SEXP _kmeansPoi_poisson_deviance_opt(SEXP ySEXP, SEXP muSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type mu(muSEXP);
-    rcpp_result_gen = Rcpp::wrap(poisson_deviance_opt(y, mu));
-    return rcpp_result_gen;
-END_RCPP
-}
-// run_kmeans
-List run_kmeans(const NumericMatrix& Y, const NumericVector& size_factors, const NumericMatrix& centers_start, double min_mu, int max_iter, double tolerance, bool verbose);
-RcppExport SEXP _kmeansPoi_run_kmeans(SEXP YSEXP, SEXP size_factorsSEXP, SEXP centers_startSEXP, SEXP min_muSEXP, SEXP max_iterSEXP, SEXP toleranceSEXP, SEXP verboseSEXP) {
+// run_kmeans2
+List run_kmeans2(const NumericMatrix& Y, const NumericVector& size_factors, const NumericMatrix& centers_start, double min_mu, int max_iter, double tolerance, bool verbose);
+RcppExport SEXP _kmeansPoi_run_kmeans2(SEXP YSEXP, SEXP size_factorsSEXP, SEXP centers_startSEXP, SEXP min_muSEXP, SEXP max_iterSEXP, SEXP toleranceSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -148,13 +149,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type max_iter(max_iterSEXP);
     Rcpp::traits::input_parameter< double >::type tolerance(toleranceSEXP);
     Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
-    rcpp_result_gen = Rcpp::wrap(run_kmeans(Y, size_factors, centers_start, min_mu, max_iter, tolerance, verbose));
+    rcpp_result_gen = Rcpp::wrap(run_kmeans2(Y, size_factors, centers_start, min_mu, max_iter, tolerance, verbose));
     return rcpp_result_gen;
 END_RCPP
 }
-// kmeans_pp_initialization
-NumericMatrix kmeans_pp_initialization(const NumericMatrix& Y, const NumericVector& size_factors, const int k, const double min_mu);
-RcppExport SEXP _kmeansPoi_kmeans_pp_initialization(SEXP YSEXP, SEXP size_factorsSEXP, SEXP kSEXP, SEXP min_muSEXP) {
+// kmeans_pp_initialization2
+NumericMatrix kmeans_pp_initialization2(const NumericMatrix& Y, const NumericVector& size_factors, const int k, const double min_mu);
+RcppExport SEXP _kmeansPoi_kmeans_pp_initialization2(SEXP YSEXP, SEXP size_factorsSEXP, SEXP kSEXP, SEXP min_muSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -162,26 +163,37 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const NumericVector& >::type size_factors(size_factorsSEXP);
     Rcpp::traits::input_parameter< const int >::type k(kSEXP);
     Rcpp::traits::input_parameter< const double >::type min_mu(min_muSEXP);
-    rcpp_result_gen = Rcpp::wrap(kmeans_pp_initialization(Y, size_factors, k, min_mu));
+    rcpp_result_gen = Rcpp::wrap(kmeans_pp_initialization2(Y, size_factors, k, min_mu));
+    return rcpp_result_gen;
+END_RCPP
+}
+// benchmark_log2
+double benchmark_log2(const NumericVector& y, const NumericVector& mu);
+RcppExport SEXP _kmeansPoi_benchmark_log2(SEXP ySEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(benchmark_log2(y, mu));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_kmeansPoi_poisson_deviance", (DL_FUNC) &_kmeansPoi_poisson_deviance, 2},
+    {"_kmeansPoi_run_kmeans", (DL_FUNC) &_kmeansPoi_run_kmeans, 7},
+    {"_kmeansPoi_kmeans_pp_initialization", (DL_FUNC) &_kmeansPoi_kmeans_pp_initialization, 4},
+    {"_kmeansPoi_benchmark_log", (DL_FUNC) &_kmeansPoi_benchmark_log, 2},
     {"_kmeansPoi_fuse_ints_for_double", (DL_FUNC) &_kmeansPoi_fuse_ints_for_double, 2},
     {"_kmeansPoi_get_LOG_LOOKUP_TABLE_EXPONENTIAL_LENGTH", (DL_FUNC) &_kmeansPoi_get_LOG_LOOKUP_TABLE_EXPONENTIAL_LENGTH, 0},
     {"_kmeansPoi_get_LOG_LOOKUP_TABLE_SIGNIFCAND_LENGTH", (DL_FUNC) &_kmeansPoi_get_LOG_LOOKUP_TABLE_SIGNIFCAND_LENGTH, 0},
     {"_kmeansPoi_get_exponent_as_integer_from_double", (DL_FUNC) &_kmeansPoi_get_exponent_as_integer_from_double, 1},
     {"_kmeansPoi_get_significand_as_integer_from_double", (DL_FUNC) &_kmeansPoi_get_significand_as_integer_from_double, 1},
-    {"_kmeansPoi_log_approx", (DL_FUNC) &_kmeansPoi_log_approx, 1},
     {"_kmeansPoi_log_approx2", (DL_FUNC) &_kmeansPoi_log_approx2, 1},
-    {"_kmeansPoi_benchmark_log", (DL_FUNC) &_kmeansPoi_benchmark_log, 1},
-    {"_kmeansPoi_benchmark_log_approx", (DL_FUNC) &_kmeansPoi_benchmark_log_approx, 1},
-    {"_kmeansPoi_benchmark_log_approx2", (DL_FUNC) &_kmeansPoi_benchmark_log_approx2, 1},
-    {"_kmeansPoi_poisson_deviance", (DL_FUNC) &_kmeansPoi_poisson_deviance, 2},
-    {"_kmeansPoi_poisson_deviance_opt", (DL_FUNC) &_kmeansPoi_poisson_deviance_opt, 2},
-    {"_kmeansPoi_run_kmeans", (DL_FUNC) &_kmeansPoi_run_kmeans, 7},
-    {"_kmeansPoi_kmeans_pp_initialization", (DL_FUNC) &_kmeansPoi_kmeans_pp_initialization, 4},
+    {"_kmeansPoi_poisson_deviance2", (DL_FUNC) &_kmeansPoi_poisson_deviance2, 2},
+    {"_kmeansPoi_run_kmeans2", (DL_FUNC) &_kmeansPoi_run_kmeans2, 7},
+    {"_kmeansPoi_kmeans_pp_initialization2", (DL_FUNC) &_kmeansPoi_kmeans_pp_initialization2, 4},
+    {"_kmeansPoi_benchmark_log2", (DL_FUNC) &_kmeansPoi_benchmark_log2, 2},
     {NULL, NULL, 0}
 };
 

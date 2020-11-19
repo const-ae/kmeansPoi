@@ -1,6 +1,3 @@
-poisson_deviance_r <- function(y, mu){
-  ifelse(y == 0, 2 * mu, pmax(2 * (y * log(y / mu) - y + mu), 0))
-}
 
 test_that("simple tests", {
   expect_equal(poisson_deviance(3, 2.2),  poisson_deviance_r(3, 2.2))
@@ -12,3 +9,7 @@ test_that("simple tests", {
   expect_equal(poisson_deviance(1, 0.99999999999994),  poisson_deviance_r(1, 0.99999999999994))
 
 })
+
+poisson_deviance(3, 2.2)
+poisson_deviance_opt(3, 2.2)
+poisson_deviance_r(3, 2.2)
