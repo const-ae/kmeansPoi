@@ -197,6 +197,7 @@ NumericMatrix kmeans_pp_initialization(const NumericMatrix& Y, const NumericVect
   NumericVector dev(n_samples);
 
   int c1_idx = sample(n_samples, /*size=*/1, /*replace=*/false, /*probs=*/R_NilValue, /*one_based=*/false)[0];
+  // Rcout << "Cluster 1 initial index: " << c1_idx << "\n";
   centers.column(0) = pmax(Y.column(c1_idx) / size_factors[c1_idx], min_mu);
   NumericMatrix::Column c1 = centers.column(0);
   for(int si = 0; si < n_samples; si++){
@@ -223,8 +224,9 @@ NumericMatrix kmeans_pp_initialization(const NumericMatrix& Y, const NumericVect
         }
       }
     }
+    // Rcout << "Cluster i initial index: " << ci_idx << "\n";
 
-    centers.column(ki)= pmax(Y.column(c1_idx) / size_factors[c1_idx], min_mu);
+    centers.column(ki)= pmax(Y.column(ci_idx) / size_factors[ci_idx], min_mu);
     NumericMatrix::Column ci = centers.column(ki);
 
     if(ki == k){

@@ -178,6 +178,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// run_kmeans_mb
+List run_kmeans_mb(const NumericMatrix& Y, const NumericVector& size_factors, const NumericMatrix& centers_start, int mini_batch_size, double min_mu, int max_iter, double tolerance, bool verbose);
+RcppExport SEXP _kmeansPoi_run_kmeans_mb(SEXP YSEXP, SEXP size_factorsSEXP, SEXP centers_startSEXP, SEXP mini_batch_sizeSEXP, SEXP min_muSEXP, SEXP max_iterSEXP, SEXP toleranceSEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type size_factors(size_factorsSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type centers_start(centers_startSEXP);
+    Rcpp::traits::input_parameter< int >::type mini_batch_size(mini_batch_sizeSEXP);
+    Rcpp::traits::input_parameter< double >::type min_mu(min_muSEXP);
+    Rcpp::traits::input_parameter< int >::type max_iter(max_iterSEXP);
+    Rcpp::traits::input_parameter< double >::type tolerance(toleranceSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(run_kmeans_mb(Y, size_factors, centers_start, mini_batch_size, min_mu, max_iter, tolerance, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_kmeansPoi_poisson_deviance", (DL_FUNC) &_kmeansPoi_poisson_deviance, 2},
@@ -194,6 +212,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_kmeansPoi_run_kmeans2", (DL_FUNC) &_kmeansPoi_run_kmeans2, 7},
     {"_kmeansPoi_kmeans_pp_initialization2", (DL_FUNC) &_kmeansPoi_kmeans_pp_initialization2, 4},
     {"_kmeansPoi_benchmark_log2", (DL_FUNC) &_kmeansPoi_benchmark_log2, 2},
+    {"_kmeansPoi_run_kmeans_mb", (DL_FUNC) &_kmeansPoi_run_kmeans_mb, 8},
     {NULL, NULL, 0}
 };
 

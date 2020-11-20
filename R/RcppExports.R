@@ -57,3 +57,7 @@ benchmark_log2 <- function(y, mu) {
     .Call(`_kmeansPoi_benchmark_log2`, y, mu)
 }
 
+run_kmeans_mb <- function(Y, size_factors, centers_start, mini_batch_size, min_mu, max_iter, tolerance, verbose) {
+    .Call(`_kmeansPoi_run_kmeans_mb`, Y, size_factors, centers_start, mini_batch_size, min_mu, max_iter, tolerance, verbose)
+}
+

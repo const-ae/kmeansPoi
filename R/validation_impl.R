@@ -6,6 +6,7 @@ poisson_deviance_r <- function(y, mu){
 kmeans_pp_initialization_r <- function(Y, size_factors, k, min_mu){
   cl_center_indices <- rep(NA, k)
   sel_c1 <- sample(seq_len(ncol(Y)), 1)
+  message("Cluster 1 initial index: ", sel_c1)
   cl_center_indices[1] <- sel_c1
 
   clusters <- matrix(NA, nrow = nrow(Y), ncol = k)
@@ -16,6 +17,7 @@ kmeans_pp_initialization_r <- function(Y, size_factors, k, min_mu){
     weights <- dev^2 / sum(dev^2)
     indices <- setdiff(seq_len(ncol(Y)), cl_center_indices)
     sel_ci <- sample(indices, prob = weights[indices], 1)
+    message("Cluster i initial index: ", sel_ci)
     cl_center_indices[ki] <- sel_ci
     clusters[,ki] <- pmax(rowSums2(Y, cols = sel_ci) / size_factors[sel_ci], min_mu)
 

@@ -4,7 +4,8 @@
 #' Main Function: k-means clustering for count data
 #'
 #' @export
-kmeansPoi <- function(data, k, min_mu = 1e-4, verbose = FALSE, debug = FALSE){
+kmeansPoi <- function(data, k, min_mu = 1e-4, verbose = FALSE, debug = FALSE,
+                      mini_batch = FALSE){
 
   # Parameter validation
   Y <- data
@@ -26,6 +27,14 @@ kmeansPoi <- function(data, k, min_mu = 1e-4, verbose = FALSE, debug = FALSE){
     run_kmeans_r(Y, size_factors, centers,
                min_mu = min_mu, max_iter = 100,
                tolerance = 1e-8, verbose = verbose)
+  }else if(! isFALSE(mini_batch)){
+    if(isTRUE(mini_batch)){
+      mini_batch <- min(ncol(data), max(10,  round(ncol(data)/100)))
+    }
+    run_kmeans_mb(Y, size_factors, centers,
+                  mini_batch_size = mini_batch,
+                  min_mu = min_mu, max_iter = 100,
+                  tolerance = 1e-8, verbose = verbose)
   }else{
     run_kmeans(Y, size_factors, centers,
                min_mu = min_mu, max_iter = 100,
